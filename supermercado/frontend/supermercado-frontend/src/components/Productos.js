@@ -1,48 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Productos() {
   const [productos, setProductos] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Primera solicitud para obtener el enlace a los productos
-    fetch('/api/inventario/')
-      .then(response => response.json())
-      .then(data => {
-        console.log('Enlace a los productos:', data.productos); // Verifica el enlace
-        return fetch(data.productos);
-      })
-      .then(response => response.json())
-      .then(productosData => {
-        console.log('Datos de productos:', productosData); // Verifica los datos
-        if (Array.isArray(productosData)) {
-          setProductos(productosData);
-        } else {
-          console.error('La respuesta no es un arreglo:', productosData);
-          setProductos([]); // Maneja el error estableciendo productos como un arreglo vacío
+    fetch('http://127.0.0.1:8000/api/inventario/productos/')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
+        return response.json();
       })
-      .catch(error => console.error('Error fetching productos:', error))
-      .finally(() => setLoading(false)); // Indica que la carga ha terminado
+      .then(data => setProductos(data))
+      .catch(error => setError(error.message));
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div>
-      <h2>Inventario de Productos</h2>
-      <ul>
-        {productos.map((producto, index) => (
-          <li key={index}>
-            {producto.nombre} - {producto.precio}
-          </li>
-        ))}
-      </ul>
+    <div className="section">
+      <h2>Lista de Productos</h2>
+      {error && <p>Error: {error}</p>}
+      {productos.length > 0 ? (
+        <ul>
+          {productos.map(producto => (
+            <li key={producto.id}>
+              {producto.nombre} - {producto.descripcion} - ${producto.precio} - Stock: {producto.stock}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No hay productos disponibles.</p>
+      )}
     </div>
   );
 }
 
 export default Productos;
-
