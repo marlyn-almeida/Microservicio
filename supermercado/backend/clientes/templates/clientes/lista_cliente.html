@@ -1,0 +1,15 @@
+<!-- clientes/templates/clientes/lista_cliente.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clientes</title>
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    <ul>
+        {% for cliente in object_list %}
+            <li>{{ cliente.nombre }} - {{ cliente.identificacion }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
