@@ -7,15 +7,9 @@ class DetalleVentaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class VentaSerializer(serializers.ModelSerializer):
-    detalles = DetalleVentaSerializer(many=True)
+    detalles = DetalleVentaSerializer(many=True, read_only=True)  # Asegúrate de que 'detalles' es un campo relacionado
 
     class Meta:
         model = Venta
         fields = '__all__'
 
-    def create(self, validated_data):
-        detalles_data = validated_data.pop('detalles')
-        venta = Venta.objects.create(**validated_data)
-        for detalle in detalles_data:
-            DetalleVenta.objects.create(venta=venta, **detalle)
-        return venta

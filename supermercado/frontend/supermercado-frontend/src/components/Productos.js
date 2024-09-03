@@ -1,33 +1,49 @@
 import React, { useEffect, useState } from 'react';
+import './Productos.css'; // Asegúrate de crear y ajustar este archivo de estilos
 
 function Productos() {
   const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/inventario/productos/')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
+    fetch('/api/inventario/productos/')
+      .then(response => response.json())
       .then(data => setProductos(data))
-      .catch(error => setError(error.message));
+      .catch(error => {
+        setError(error.message);
+        console.error('Error:', error);
+      })
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading) return <p>Cargando...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="section">
       <h2>Lista de Productos</h2>
-      {error && <p>Error: {error}</p>}
       {productos.length > 0 ? (
-        <ul>
-          {productos.map(producto => (
-            <li key={producto.id}>
-              {producto.nombre} - {producto.descripcion} - ${producto.precio} - Stock: {producto.stock}
-            </li>
-          ))}
-        </ul>
+        <table className="productos-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Stock</th>
+            </tr>
+          </thead>
+          <tbody>
+            {productos.map(producto => (
+              <tr key={producto.id}>
+                <td>{producto.nombre}</td>
+                <td>{producto.descripcion}</td>
+                <td>${producto.precio}</td>
+                <td>{producto.stock}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       ) : (
         <p>No hay productos disponibles.</p>
       )}
@@ -36,3 +52,4 @@ function Productos() {
 }
 
 export default Productos;
+
