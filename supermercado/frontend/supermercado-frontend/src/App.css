@@ -39,12 +39,12 @@ html, body {
 }
 
 .cart-icon {
-  width: 60px; /* Aumenta el tamaño según sea necesario */
+  width: 120px; /* Aumenta el tamaño según sea necesario */
   height: auto;
 }
 
 .logo {
-  width: 120px; /* Aumenta el tamaño según sea necesario */
+  width: 500px; /* Aumenta el tamaño según sea necesario */
   height: auto;
 }
 
@@ -80,16 +80,16 @@ nav {
 }
 
 .content {
-  margin-top: 20px;
+  margin-top: 10px;
   background-color: #f4f4f4;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   flex: 1; /* Permite que el contenido principal ocupe el espacio disponible */
 }
 
 .footer {
-  background-color: #4CAF50;
+  background-color: #39923c;
   color: white;
   padding: 10px;
   border-radius: 10px;

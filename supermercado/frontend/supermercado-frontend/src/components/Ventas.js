@@ -6,7 +6,7 @@ function Ventas() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/ventas/ventas/') // Asegúrate de que esta URL sea correcta
+    fetch('/api/ventas/ventas/')
       .then(response => response.json())
       .then(data => setVentas(data))
       .catch(error => {

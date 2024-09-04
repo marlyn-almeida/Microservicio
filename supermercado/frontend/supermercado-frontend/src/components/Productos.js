@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Productos.css'; // Asegúrate de crear y ajustar este archivo de estilos
+import './Productos.css'; // Archivo de estilos
 
 function Productos() {
   const [productos, setProductos] = useState([]);
@@ -27,6 +27,7 @@ function Productos() {
         <table className="productos-table">
           <thead>
             <tr>
+              <th>Imagen</th>
               <th>Nombre</th>
               <th>Descripción</th>
               <th>Precio</th>
@@ -36,6 +37,9 @@ function Productos() {
           <tbody>
             {productos.map(producto => (
               <tr key={producto.id}>
+                <td>
+                  <img src={producto.imagen} alt={producto.nombre} className="producto-imagen" />
+                </td>
                 <td>{producto.nombre}</td>
                 <td>{producto.descripcion}</td>
                 <td>${producto.precio}</td>
@@ -52,4 +56,5 @@ function Productos() {
 }
 
 export default Productos;
+
 

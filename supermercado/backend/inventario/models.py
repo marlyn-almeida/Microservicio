@@ -4,6 +4,7 @@ class Producto(models.Model):
     descripcion = models.TextField(null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.IntegerField()
+    imagen = models.ImageField(upload_to='productos/', null=True, blank=True)  # Campo para la imagen
 
     def __str__(self):
         return self.nombre

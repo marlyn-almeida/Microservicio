@@ -1,27 +1,38 @@
+/* Estilo general para la sección de productos */
+.section {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Estilo para la tabla de productos */
 .productos-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 16px;
-  }
-  
-  .productos-table th,
-  .productos-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  .productos-table th {
-    background-color: #4CAF50;
-    color: white;
-    text-align: left;
-  }
-  
-  .productos-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .productos-table tr:hover {
-    background-color: #ddd;
-  }
-  
+  width: 100%;
+  border-collapse: collapse; /* Asegura que las celdas se muestren bien */
+  margin-top: 20px;
+}
+
+/* Estilo para las celdas de la tabla */
+.productos-table th, .productos-table td {
+  text-align: center; /* Centra el texto y el contenido dentro de las celdas */
+  padding: 8px; /* Espaciado alrededor del contenido */
+  border: 1px solid #ddd; /* Borde de las celdas */
+}
+
+/* Estilo para las cabeceras de la tabla */
+.productos-table th {
+  background-color: #408f25; /* Color de fondo para las cabeceras */
+}
+
+/* Estilo para las filas alternas */
+.productos-table tr:nth-child(even) {
+  background-color: #f9f9f9; /* Color de fondo para filas alternas */
+}
+
+/* Estilo para la imagen de los productos */
+.producto-imagen {
+  max-width: 100px; /* Ancho máximo de la imagen */
+  height: auto; /* Altura automática para mantener la proporción */
+  display: block; /* Asegura que la imagen se comporte como un bloque */
+  margin: 0 auto; /* Centra la imagen dentro de la celda */
+}
